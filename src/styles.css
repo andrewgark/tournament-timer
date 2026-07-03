@@ -1,0 +1,334 @@
+:root {
+  color-scheme: dark;
+  font-family:
+    Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.4;
+  font-weight: 400;
+  background: linear-gradient(180deg, #111522 0%, #0a0d15 100%);
+  color: #f4f7fb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+}
+
+input {
+  width: 100%;
+}
+
+.app-shell {
+  min-height: 100vh;
+  padding: 24px;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(320px, 460px);
+  gap: 24px;
+  min-height: calc(100vh - 48px);
+}
+
+.layout--presentation {
+  grid-template-columns: 1fr;
+}
+
+.timer-panel,
+.settings-card {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(7, 10, 18, 0.94);
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.18);
+}
+
+.timer-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 28px;
+  padding: 28px;
+  gap: 20px;
+}
+
+.layout--presentation .timer-panel {
+  min-height: calc(100vh - 48px);
+}
+
+.stage-chip {
+  align-self: flex-start;
+  border-radius: 999px;
+  padding: 10px 16px;
+  background: rgba(122, 142, 255, 0.16);
+  color: #d5ddff;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+}
+
+.timer-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+}
+
+.phase-surroundings {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(140px, 1fr) minmax(0, 3fr) minmax(140px, 1fr);
+  align-items: center;
+  gap: 24px;
+}
+
+.phase-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.phase-side {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: #aab2ca;
+}
+
+.phase-side--previous {
+  text-align: left;
+  align-items: flex-start;
+}
+
+.phase-side--next {
+  text-align: right;
+  align-items: flex-end;
+}
+
+.phase-side__caption {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.72;
+}
+
+.phase-side__label {
+  font-size: clamp(1rem, 1.7vw, 1.35rem);
+  font-weight: 600;
+  color: #dce3f8;
+}
+
+.phase-label {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+}
+
+.timer-value {
+  font-size: clamp(7rem, 21vw, 18rem);
+  line-height: 0.9;
+  font-weight: 800;
+  letter-spacing: -0.06em;
+  font-variant-numeric: tabular-nums;
+}
+
+.timer-value--urgent {
+  animation: pulse-urgent 1.2s step-end infinite;
+}
+
+.controls-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.button {
+  min-height: 58px;
+  border-radius: 18px;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #f6f8fc;
+  transition:
+    transform 0.18s ease,
+    background 0.18s ease,
+    opacity 0.18s ease;
+}
+
+.button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.52;
+}
+
+.button--primary {
+  background: linear-gradient(135deg, #6384ff 0%, #7d61ff 100%);
+  box-shadow: 0 12px 32px rgba(97, 126, 255, 0.35);
+}
+
+.button--primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #7591ff 0%, #8a70ff 100%);
+}
+
+.button--ghost {
+  grid-column: 1 / -1;
+}
+
+.button--full {
+  width: 100%;
+}
+
+.controls-grid--presentation {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+}
+
+.controls-grid--presentation .button {
+  min-width: 84px;
+  min-height: 34px;
+  padding: 6px 8px;
+  border-radius: 10px;
+  font-size: 0.78rem;
+  line-height: 1.1;
+  box-shadow: none;
+}
+
+.controls-grid--presentation .button--ghost {
+  min-width: 120px;
+}
+
+.settings-panel {
+  min-height: 100%;
+}
+
+.settings-card {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  height: 100%;
+  border-radius: 28px;
+  padding: 24px;
+}
+
+.settings-heading h1 {
+  margin: 0 0 8px;
+  font-size: 1.7rem;
+}
+
+.settings-heading p {
+  margin: 0;
+  color: #aab2ca;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+}
+
+.field span {
+  color: #d8def0;
+}
+
+.field input,
+.checkbox-field {
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.field input {
+  padding: 14px 16px;
+  color: #ffffff;
+}
+
+.checkbox-field {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  color: #d8def0;
+}
+
+.checkbox-field input {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+}
+
+@keyframes pulse-urgent {
+  0%,
+  100% {
+    color: #ffb1b1;
+  }
+
+  50% {
+    color: #ff3434;
+  }
+}
+
+@media (max-width: 1180px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .settings-panel {
+    min-height: auto;
+  }
+
+  .phase-surroundings {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .phase-side,
+  .phase-side--previous,
+  .phase-side--next {
+    align-items: center;
+    text-align: center;
+  }
+}
+
+@media (max-width: 760px) {
+  .app-shell {
+    padding: 14px;
+  }
+
+  .timer-panel,
+  .settings-card {
+    border-radius: 22px;
+    padding: 18px;
+  }
+
+  .controls-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .button--ghost {
+    grid-column: auto;
+  }
+}
